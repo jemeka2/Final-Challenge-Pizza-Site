@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" th:href="@{/createpizza}"><button type="button" class="btn btn-warning">Order a Pizza</button></a>
+                    <a class="nav-link" th:href="@{/createpizza}" sec:authorize="isAuthenticated()"><button type="button" class="btn btn-warning">Order a Pizza</button></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/about}"><button type="button" class="btn btn-warning">About Us</button></a>
