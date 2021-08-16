@@ -62,8 +62,10 @@ public class Controller {
     }
 
     @GetMapping("/createpizza")
-    public String createPizza(Model model){
-        model.addAttribute("pizza", new Pizza());
+    public String createPizza(Model model, Principal principal){
+        Pizza pizza = new Pizza();
+        pizza.setUser(userRepo.findByUsername(principal.getName()));
+        model.addAttribute("pizza", pizza);
         return "createpizza";
     }
 
