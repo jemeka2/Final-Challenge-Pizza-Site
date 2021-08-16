@@ -33,7 +33,6 @@ public class User {
     @NotNull
     private String firstName;
 
-
     @Column(name="last_name")
     @NotEmpty
     @NotNull
@@ -54,11 +53,10 @@ public class User {
                 String password,
                 @NotEmpty @NotNull String firstName,
                 @NotEmpty @NotNull String lastName,
-                boolean enabled, Pizza pizzas) {
-
+                boolean enabled, Set<Pizza> pizzas) {
         this.username = username;
         this.email = email;
-        this.setPassword(password);
+        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;

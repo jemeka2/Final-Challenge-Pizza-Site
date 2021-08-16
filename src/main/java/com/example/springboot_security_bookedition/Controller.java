@@ -55,6 +55,7 @@ public class Controller {
         }
         return "index";
     }
+
     @RequestMapping("/")
     public String listActors(){
         return "index";
@@ -67,7 +68,7 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, Model model){
+    public String processPizza(@ModelAttribute Pizza pizza){
         pizzaRepository.save(pizza);
         return "redirect:/";
     }

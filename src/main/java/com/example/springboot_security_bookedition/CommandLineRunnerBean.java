@@ -14,12 +14,12 @@ public class CommandLineRunnerBean implements CommandLineRunner {
     RoleRepo roleRepo;
 
     public void run(String...args){
-        User user = new User("bart", "bart@domain.com", "bart", "Bart","Simpson", true);
+        User user = new User("bart", "bart@domain.com", "bart", "Bart","Simpson", true, null);
         Role userRole = new Role("bart", "ROLE_USER");
         userRepo.save(user);
         roleRepo.save(userRole);
 
-        User admin = new User("super", "super@domain.com", "super", "Super", "Hero", true);
+        User admin = new User("super", "super@domain.com", "super", "Super", "Hero", true, null);
         Role adminRole1 = new Role("super", "ROLE_ADMIN");
         Role adminRole2 = new Role("super", "ROLE_USER");
 
