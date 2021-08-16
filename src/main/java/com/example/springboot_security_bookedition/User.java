@@ -56,7 +56,7 @@ public class User {
                 boolean enabled, Set<Pizza> pizzas) {
         this.username = username;
         this.email = email;
-        this.password = password;
+        this.setPassword(password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
