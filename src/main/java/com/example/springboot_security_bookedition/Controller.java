@@ -73,26 +73,6 @@ public class Controller {
     }
 
 
-
-
-
-//    @PostMapping("/add")
-//    public String processActor(@ModelAttribute Actor actor,
-//                               @RequestParam("file") MultipartFile file){
-//        if(file.isEmpty()){
-//            return "redirect:/add";
-//        }
-//        try{
-//            Map uploadResult = cloudc.upload(file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
-//            actor.setPhoto(uploadResult.get("url").toString());
-//            actorRepo.save(actor);
-//        }catch(IOException e){
-//            e.printStackTrace();
-//            return "redirect:/add";
-//        }
-//        return "redirect:/";
-//    }
-
     @RequestMapping("/login")
     public String login(){return "login";}
 

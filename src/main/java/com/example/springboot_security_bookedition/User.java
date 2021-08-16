@@ -54,7 +54,7 @@ public class User {
                 String password,
                 @NotEmpty @NotNull String firstName,
                 @NotEmpty @NotNull String lastName,
-                boolean enabled) {
+                boolean enabled, Pizza pizzas) {
 
         this.username = username;
         this.email = email;
@@ -62,6 +62,7 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.enabled = enabled;
+        this.pizzas = pizzas;
     }
 
 
@@ -117,5 +118,12 @@ public class User {
 
     public void clearPassword(){
         this.password="";
+    }
+
+    public Set<Pizza> getPizzas() {
+        return pizzas;
+    }
+    public void setPizzas(Set<Pizza> pizzas) {
+        this.pizzas = pizzas;
     }
 }
