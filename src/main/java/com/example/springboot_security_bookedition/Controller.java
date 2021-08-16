@@ -21,6 +21,9 @@ public class Controller {
     RoleRepo roleRepo;
 
     @Autowired
+    PizzaRepository pizzaRepository;
+
+    @Autowired
     CloudinaryConfig cloudc;
 
     @RequestMapping("/secure")
@@ -56,6 +59,21 @@ public class Controller {
     public String listActors(){
         return "index";
     }
+
+    @GetMapping("/createpizza")
+    public String createPizza(Model model){
+        model.addAttribute("pizza", new Pizza());
+        return "createpizza";
+    }
+
+    @PostMapping("/processpizza")
+    public String processPizza(@ModelAttribute Pizza pizza, Model model){
+        pizzaRepository.save(pizza);
+        return "redirect:/";
+    }
+
+
+
 
 
 //    @PostMapping("/add")
