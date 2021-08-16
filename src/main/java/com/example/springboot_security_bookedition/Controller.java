@@ -76,6 +76,10 @@ public class Controller {
         return "redirect:/";
     }
 
+    @RequestMapping("/about")
+    public String aboutUs(){
+        return "about";
+    }
 
     @RequestMapping("/login")
     public String login(){return "login";}
