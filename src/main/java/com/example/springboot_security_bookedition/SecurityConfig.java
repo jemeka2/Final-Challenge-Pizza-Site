@@ -17,8 +17,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.authorizeRequests()
                 .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/admin", "/register").hasRole("ADMIN")
                 .antMatchers("/register").permitAll()
+                .antMatchers("/processregister").permitAll()
+                .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .antMatchers("/createpizza").permitAll()
                 .antMatchers("/processpizza").hasRole("USER")
                 .and()
@@ -27,7 +29,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutSuccessUrl("/login?Logout=true").permitAll();
-
         //for accessing H2 for debugging purpose
         httpSecurity.csrf().ignoringAntMatchers("/h2-console/**");
         httpSecurity.headers().frameOptions().sameOrigin();
