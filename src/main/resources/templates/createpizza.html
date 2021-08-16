@@ -10,6 +10,8 @@
 
 </head>
 <body>
+<div th:replace="fragments :: navbar"></div>
+
 <div class="m-3">
 <form th:action="@{/processpizza}" th:object="${pizza}" method="post">
     <input type="hidden" th:field="*{id}">

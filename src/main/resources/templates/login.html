@@ -8,7 +8,7 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
-
+<div th:replace="fragments :: navbar"></div>
 <h1> Login Page</h1>
 <div th:if="${param.error}">Invalid username or password</div>
 
