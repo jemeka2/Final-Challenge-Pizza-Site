@@ -30,16 +30,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                <li class="nav-item" sec:authorize="isAuthenticated()">
+                <li class="nav-item">
                     <a class="nav-link" th:href="@{/createpizza}"><button type="button" class="btn btn-warning">Order a Pizza</button></a>
                 </li>
-                <li class="nav-item" sec:authorize="isAuthenticated()">
+                <li class="nav-item">
                     <a class="nav-link" th:href="@{/about}"><button type="button" class="btn btn-warning">About Us</button></a>
                 </li>
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link"><form th:action="@{/logout}" method="post"><input type="submit" class="btn-sm btn-warning" value="Logout"/></form></a>
                 </li>
-                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                <li class="nav-item" sec:authorize="isAnonymous()">
                     <a class="nav-link" th:href="@{/login}"><button type="button" class="btn-sm btn-warning">Login</button></a>
                 </li>
             </ul>
