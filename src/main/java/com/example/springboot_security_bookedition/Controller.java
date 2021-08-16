@@ -57,7 +57,7 @@ public class Controller {
         return "index";
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String listActors(){
         return "index";
     }
