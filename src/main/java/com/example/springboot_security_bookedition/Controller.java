@@ -84,7 +84,6 @@ public class Controller {
     public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")long topping1
             , @RequestParam(name = "topping2")long topping2
             , @RequestParam(name = "topping3") long topping3){
-
         Set<Topping> toppings = new HashSet<>();
         toppingRepo.findById(topping1).get().setPizza(pizza);
         toppingRepo.findById(topping2).get().setPizza(pizza);
@@ -92,8 +91,8 @@ public class Controller {
         toppings.add(toppingRepo.findById(topping1).get());
         toppings.add(toppingRepo.findById(topping2).get());
         toppings.add(toppingRepo.findById(topping3).get());
-
         pizza.setToppings(toppings);
+        pizza.setPrice();
         pizzaRepository.save(pizza);
         return "redirect:/receipt";
     }

@@ -27,19 +27,21 @@ public class Pizza {
     @OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Topping> toppings;
 
+    private double price;
+
 
     public Pizza() {
 
     }
 
-    public Pizza(User user, String size, String sauce, String cheese, String dough, Set<Topping> toppings) {
+    public Pizza(User user, String size, String sauce, String cheese, String dough, Set<Topping> toppings, double price) {
         this.user = user;
         this.size = size;
         this.sauce = sauce;
         this.cheese = cheese;
         this.dough = dough;
         this.toppings = toppings;
-
+        this.price = price;
     }
 
     public long getId() {
@@ -90,5 +92,31 @@ public class Pizza {
 
     public void setToppings(Set<Topping> toppings) {
         this.toppings = toppings;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice() {
+        double subtotal = 7.00;
+        if(this.size.equals("m")){
+            subtotal += 2.00;
+        } else if(this.size.equals("l")){
+            subtotal += 4.00;
+        }
+        if(this.cheese.equals("extra")){
+            subtotal += 1.00;
+        }
+        if(this.dough.equals("cheesy")){
+            subtotal += 1.00;
+        }
+        if(this.sauce.equals("extra")){
+            subtotal += 1.00;
+        }
+        for (Topping topping : this.toppings) {
+            subtotal += topping.getPrice();
+        }
+        this.price = subtotal;
     }
 }

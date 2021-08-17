@@ -14,6 +14,7 @@
     <div th:each="pizza: ${pizzas}">
         <p th:inline="text"> Size: [[${pizza.size}]]</p>
         <p th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]]</p>
+        <p th:inline="text"> Total: [[${pizza.price}]]</p>
     </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
