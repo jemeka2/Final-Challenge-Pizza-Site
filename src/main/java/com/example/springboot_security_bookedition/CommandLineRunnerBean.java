@@ -36,7 +36,7 @@ public class CommandLineRunnerBean implements CommandLineRunner {
         userRepo.save(temp);
         roleRepo.save(tempRole3);
 
-        Topping pepperoni = new Topping("pepperoni", 0.5, true, null);
+        Topping pepperoni = new Topping("pepperoni", 0.5, true);
         toppingRepo.save(pepperoni);
 
     }

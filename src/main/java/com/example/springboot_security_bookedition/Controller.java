@@ -11,10 +11,16 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Map;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+
+
+
+
+
     @Autowired
     UserRepo userRepo;
 
@@ -23,6 +29,9 @@ public class Controller {
 
     @Autowired
     PizzaRepository pizzaRepository;
+
+    @Autowired
+    ToppingRepo toppingRepo;
 
     @Autowired
     CloudinaryConfig cloudc;

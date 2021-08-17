@@ -21,7 +21,10 @@ public class Pizza {
 
     private String cheese; // none, normal, extra
 
-    private String dough; // thin, normal, cheesy
+    private String dough; // thin, normal, cheese
+
+    private Set<String> set;
+
 
     public Pizza() {
     }
