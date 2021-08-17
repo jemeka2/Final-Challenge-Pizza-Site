@@ -74,7 +74,6 @@ public class Controller {
     @GetMapping("/createpizza")
     public String createPizza(Model model, Principal principal){
         Pizza pizza = new Pizza();
-
         pizza.setUser(userRepo.findByUsername(principal.getName()));
         model.addAttribute("pizza", pizza);
         model.addAttribute("toppings", toppingRepo.findAll());
@@ -97,6 +96,18 @@ public class Controller {
         pizza.setPrice();
         pizzaRepository.save(pizza);
         return "redirect:/receipt";
+    }
+
+    @GetMapping("/createTopping")
+    public String createTopping(Model model){
+        model.addAttribute("topping", new Topping());
+        return "createtopping";
+    }
+
+    @PostMapping("/processTopping")
+    public String processTopping(@ModelAttribute Topping topping){
+        toppingRepo.save(topping);
+        return "redirect:/createpizza";
     }
 
     @RequestMapping("/receipt")

@@ -27,7 +27,7 @@
                             <div class="col">
                                 <h5>Size</h5>
                                 <label class="radioButton">Small
-                                    <input type="radio" id="small" th:field="*{size}" th:value="s">
+                                    <input type="radio" checked="checked" id="small" th:field="*{size}" th:value="s">
                                     <span class="checkmark"></span>
                                 </label>
                                 <br>
@@ -65,25 +65,16 @@
                                 <h5>Toppings<h6>(Max of 3 toppings)</h6></h5>
 
                                 <!--Toppings-->
-                                <label th:each="topping: ${toppings}" th:inline="text"> [[${topping.name}]]
-                                    <input type="checkbox" name="toppingList" th:value="${topping.id}">
-                                    <br><br>
-<!--                                    <span class="checkmark"></span>-->
-
-                                </label>
-
-                                <select name="topping1">
-                                    <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
-                                </select>
-                                <br>
-                                <select name="topping2">
-                                    <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
-                                </select>
-                                <br>
-                                <select name="topping3">
-                                    <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
-                                </select>
-                                <br><br><br>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col" th:each="topping: ${toppings}">
+                                            <br>
+                                            <label th:inline="text">[[${topping.name}]]
+                                                <input type="checkbox" name="toppingList" th:value="${topping.id}">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

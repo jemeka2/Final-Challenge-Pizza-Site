@@ -2,6 +2,7 @@ package com.example.springboot_security_bookedition;
 
 import javax.persistence.*;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -16,6 +17,7 @@ public class Topping {
     private String name;
 
     @NotNull
+    @Min(0)
     @Max(20)
     private double price;
 
