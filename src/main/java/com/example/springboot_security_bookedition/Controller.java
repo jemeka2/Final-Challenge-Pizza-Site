@@ -81,12 +81,27 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")long topping1input){
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")long topping1
+            , @RequestParam(name = "topping2")long topping2
+            , @RequestParam(name = "topping3") long topping3){
+
         Set<Topping> toppings = new HashSet<>();
-        toppings.add(toppingRepo.findById(topping1input).get());
+        toppingRepo.findById(topping1).get().setPizza(pizza);
+        toppingRepo.findById(topping2).get().setPizza(pizza);
+        toppingRepo.findById(topping3).get().setPizza(pizza);
+        toppings.add(toppingRepo.findById(topping1).get());
+        toppings.add(toppingRepo.findById(topping2).get());
+        toppings.add(toppingRepo.findById(topping3).get());
+
         pizza.setToppings(toppings);
         pizzaRepository.save(pizza);
-        return "redirect:/";
+        return "redirect:/receipt";
+    }
+
+    @RequestMapping("/receipt")
+    public String receipt(Model model){
+        model.addAttribute("pizzas", pizzaRepository.findAll());
+        return "receipt";
     }
 
     @RequestMapping("/about")

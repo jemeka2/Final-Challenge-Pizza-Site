@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
@@ -37,6 +38,12 @@
         <option th:value="cheesy">Cheesy Crust</option>
     </select>
     <select name="topping1">
+        <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
+    </select>
+    <select name="topping2">
+        <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
+    </select>
+    <select name="topping3">
         <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
     </select>
 
