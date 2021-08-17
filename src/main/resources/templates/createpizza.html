@@ -13,44 +13,78 @@
 <body>
 <div th:replace="fragments :: navbar"></div>
 
-<div class="m-3">
-<form th:action="@{/processpizza}" th:object="${pizza}" method="post">
-    <input type="hidden" th:field="*{id}">
-    <input type="hidden" th:field="*{user}">
-    <select th:field="*{size}">
-        <option th:value="s">Small</option>
-        <option th:value="m">Medium</option>
-        <option th:value="l">Large</option>
-    </select>
-    <select th:field="*{sauce}">
-        <option th:value="normal">Normal Sauce</option>
-        <option th:value="extra">Extra Sauce</option>
-        <option th:value="none">No Sauce</option>
-    </select>
-    <select th:field="*{cheese}">
-        <option th:value="normal">Normal Cheese</option>
-        <option th:value="extra">Extra Cheese</option>
-        <option th:value="none">No Cheese</option>
-    </select>
-    <select th:field="*{dough}">
-        <option th:value="normal">Normal Crust</option>
-        <option th:value="thin">Thin Crust</option>
-        <option th:value="cheesy">Cheesy Crust</option>
-    </select>
-    <select name="topping1">
-        <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
-    </select>
-    <select name="topping2">
-        <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
-    </select>
-    <select name="topping3">
-        <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
-    </select>
+    <div class="m-3">
+        <div class="card" id="pizzaMaker" style="width: 35%;">
+            <img src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142349/istockphoto-1168754685-170667a_nuknvu.jpg" class="card-img-top" alt="img of pizza">
+            <div class="card-body">
+                <form th:action="@{/processpizza}" th:object="${pizza}" method="post">
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{user}">
 
-    <input class="btn btn-danger" type="submit" value="Order a pizza">
-</form>
-</div>
+                    <!--Base Pizza Options-->
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h5>Size</h5>
+                                <label class="radioButton">Small
+                                    <input type="radio" id="small" th:field="*{size}" th:value="s">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <br>
+                                <label class="radioButton">Medium
+                                    <input type="radio" id="medium" th:field="*{size}" th:value="m">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <br>
+                                <label class="radioButton">Large
+                                    <input type="radio" id="large" th:field="*{size}" th:value="l">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
 
+                            <div class="col">
+                                <h5>Pizza Options</h5>
+                                <select th:field="*{sauce}">
+                                    <option th:value="normal">Normal Sauce</option>
+                                    <option th:value="extra">Extra Sauce</option>
+                                    <option th:value="none">No Sauce</option>
+                                </select>
+                                <br>
+                                <select th:field="*{cheese}">
+                                    <option th:value="normal">Normal Cheese</option>
+                                    <option th:value="extra">Extra Cheese</option>
+                                    <option th:value="none">No Cheese</option>
+                                </select>
+                                <br>
+                                <select th:field="*{dough}">
+                                    <option th:value="normal">Normal Crust</option>
+                                    <option th:value="thin">Thin Crust</option>
+                                    <option th:value="cheesy">Cheesy Crust</option>
+                                </select>
+                                <br><br>
+                                <h5>Toppings<h6>(Max of 3 toppings)</h6></h5>
+
+                                <!--Toppings-->
+                                <select name="topping1">
+                                    <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
+                                </select>
+                                <br>
+                                <select name="topping2">
+                                    <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
+                                </select>
+                                <br>
+                                <select name="topping3">
+                                    <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
+                                </select>
+                                <br><br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <input class="btn btn-danger" type="submit" value="Order a pizza">
+                </form>
+            </div>
+        </div>
+    </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
