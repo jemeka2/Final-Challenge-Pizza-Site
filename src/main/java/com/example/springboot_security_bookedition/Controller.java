@@ -76,14 +76,15 @@ public class Controller {
 
         pizza.setUser(userRepo.findByUsername(principal.getName()));
         model.addAttribute("pizza", pizza);
+        model.addAttribute("toppings", toppingRepo.findAll());
         return "createpizza";
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")boolean topping1input){
-        if (topping1input){
-            System.out.println("success");
-        }
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")long topping1input){
+        Set<Topping> toppings = new HashSet<>();
+        toppings.add(toppingRepo.findById(topping1input).get());
+        pizza.setToppings(toppings);
         pizzaRepository.save(pizza);
         return "redirect:/";
     }

@@ -37,8 +37,7 @@
         <option th:value="cheesy">Cheesy Crust</option>
     </select>
     <select name="topping1">
-        <option value="true">yes</option>
-        <option value="false">no</option>
+        <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
     </select>
 
     <input class="btn btn-danger" type="submit" value="Order a pizza">
