@@ -13,6 +13,9 @@ public class CommandLineRunnerBean implements CommandLineRunner {
     @Autowired
     RoleRepo roleRepo;
 
+    @Autowired
+    ToppingRepo toppingRepo;
+
     public void run(String...args){
         User user = new User("bart", "bart@domain.com", "bart", "Bart","Simpson", true, null);
         Role userRole = new Role("bart", "ROLE_USER");
@@ -32,6 +35,9 @@ public class CommandLineRunnerBean implements CommandLineRunner {
 
         userRepo.save(temp);
         roleRepo.save(tempRole3);
+
+        Topping pepperoni = new Topping("pepperoni", 0.5, true, null);
+        toppingRepo.save(pepperoni);
 
     }
 

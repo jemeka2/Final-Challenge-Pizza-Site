@@ -1,6 +1,7 @@
 package com.example.springboot_security_bookedition;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Pizza {
@@ -11,6 +12,8 @@ public class Pizza {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private User user;
+
+
 
     private String size;   // s m l
 
@@ -47,7 +50,6 @@ public class Pizza {
     public String getSauce() {
         return sauce;
     }
-
     public void setSauce(String sauce) {
         this.sauce = sauce;
     }
@@ -55,7 +57,6 @@ public class Pizza {
     public String getCheese() {
         return cheese;
     }
-
     public void setCheese(String cheese) {
         this.cheese = cheese;
     }
@@ -63,7 +64,6 @@ public class Pizza {
     public String getDough() {
         return dough;
     }
-
     public void setDough(String dough) {
         this.dough = dough;
     }
