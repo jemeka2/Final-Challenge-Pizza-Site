@@ -71,6 +71,13 @@ public class Controller {
         return "index";
     }
 
+    @RequestMapping("/orderhistory")
+    public String orderHistory(Model model){
+        model.addAttribute("pizzas", pizzaRepository.findAll());
+        model.addAttribute("toppings", toppingRepo.findAll());
+        return "orderhistory";
+    }
+
     @GetMapping("/createpizza")
     public String createPizza(Model model, Principal principal){
         Pizza pizza = new Pizza();
