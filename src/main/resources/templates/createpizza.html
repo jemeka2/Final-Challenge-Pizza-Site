@@ -65,6 +65,13 @@
                                 <h5>Toppings<h6>(Max of 3 toppings)</h6></h5>
 
                                 <!--Toppings-->
+                                <label th:each="topping: ${toppings}" th:inline="text"> [[${topping.name}]]
+                                    <input type="checkbox" name="toppingList" th:value="${topping.id}">
+                                    <br><br>
+<!--                                    <span class="checkmark"></span>-->
+
+                                </label>
+
                                 <select name="topping1">
                                     <option th:each="topping: ${toppings}" th:value="${topping.id}" th:inline="text">[[${topping.name}]]</option>
                                 </select>

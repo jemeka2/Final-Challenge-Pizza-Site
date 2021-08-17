@@ -14,6 +14,7 @@
     <div th:each="pizza: ${pizzas}">
         <p th:inline="text"> Size: [[${pizza.size}]]</p>
         <p th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]]</p>
+        <p th:if="${pizza.toppings.size()} == 0">Hello</p>
         <p th:inline="text"> Total: [[${pizza.price}]]</p>
     </div>
 

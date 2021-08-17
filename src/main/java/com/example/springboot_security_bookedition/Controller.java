@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -81,17 +82,18 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")long topping1
-            , @RequestParam(name = "topping2")long topping2
-            , @RequestParam(name = "topping3") long topping3){
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList") String toppingList){
         Set<Topping> toppings = new HashSet<>();
-        toppingRepo.findById(topping1).get().setPizza(pizza);
-        toppingRepo.findById(topping2).get().setPizza(pizza);
-        toppingRepo.findById(topping3).get().setPizza(pizza);
-        toppings.add(toppingRepo.findById(topping1).get());
-        toppings.add(toppingRepo.findById(topping2).get());
-        toppings.add(toppingRepo.findById(topping3).get());
+
+        String[] pickedToppings = toppingList.split(",");
+
+        for(String s: pickedToppings){
+           toppingRepo.findById(Long.parseLong(s)).get().setPizza(pizza);
+           toppings.add(toppingRepo.findById(Long.parseLong(s)).get());
+        }
+
         pizza.setToppings(toppings);
+        System.out.println(pizza.getToppings());
         pizza.setPrice();
         pizzaRepository.save(pizza);
         return "redirect:/receipt";
