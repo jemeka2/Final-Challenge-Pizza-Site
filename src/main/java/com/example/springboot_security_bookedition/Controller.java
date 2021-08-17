@@ -12,13 +12,12 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @org.springframework.stereotype.Controller
 public class Controller {
-
-
-
 
 
     @Autowired
@@ -80,7 +79,10 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza){
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "topping1")boolean topping1input){
+        if (topping1input){
+            System.out.println("success");
+        }
         pizzaRepository.save(pizza);
         return "redirect:/";
     }

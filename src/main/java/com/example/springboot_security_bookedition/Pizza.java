@@ -1,10 +1,13 @@
 package com.example.springboot_security_bookedition;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Pizza {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -13,20 +16,30 @@ public class Pizza {
     @JoinColumn(name = "user_id")
     private User user;
 
-
-
     private String size;   // s m l
 
     private String sauce;  // none, normal, extra
 
     private String cheese; // none, normal, extra
 
-    private String dough; // thin, normal, cheese
+    private String dough; // thin, normal, cheesy
 
-    private Set<String> set;
+    @OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Topping> toppings;
 
 
     public Pizza() {
+
+    }
+
+    public Pizza(User user, String size, String sauce, String cheese, String dough, Set<Topping> toppings) {
+        this.user = user;
+        this.size = size;
+        this.sauce = sauce;
+        this.cheese = cheese;
+        this.dough = dough;
+        this.toppings = toppings;
+
     }
 
     public long getId() {
@@ -69,5 +82,13 @@ public class Pizza {
     }
     public void setDough(String dough) {
         this.dough = dough;
+    }
+
+    public Set<Topping> getToppings() {
+        return toppings;
+    }
+
+    public void setToppings(Set<Topping> toppings) {
+        this.toppings = toppings;
     }
 }

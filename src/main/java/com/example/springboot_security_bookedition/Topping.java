@@ -21,7 +21,9 @@ public class Topping {
 
     private boolean inStock;
 
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pizza_id")
+    private Pizza pizza;
 
     public Topping() {
     }
@@ -62,4 +64,11 @@ public class Topping {
     }
 
 
+    public Pizza getPizza() {
+        return pizza;
+    }
+
+    public void setPizza(Pizza pizza) {
+        this.pizza = pizza;
+    }
 }

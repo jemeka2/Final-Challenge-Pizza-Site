@@ -16,25 +16,29 @@
 <form th:action="@{/processpizza}" th:object="${pizza}" method="post">
     <input type="hidden" th:field="*{id}">
     <input type="hidden" th:field="*{user}">
-    <select type="text" th:field="*{size}">
+    <select th:field="*{size}">
         <option th:value="s">Small</option>
         <option th:value="m">Medium</option>
         <option th:value="l">Large</option>
     </select>
-    <select type="text" th:field="*{sauce}">
+    <select th:field="*{sauce}">
         <option th:value="normal">Normal Sauce</option>
         <option th:value="extra">Extra Sauce</option>
         <option th:value="none">No Sauce</option>
     </select>
-    <select type="text" th:field="*{cheese}">
+    <select th:field="*{cheese}">
         <option th:value="normal">Normal Cheese</option>
         <option th:value="extra">Extra Cheese</option>
         <option th:value="none">No Cheese</option>
     </select>
-    <select type="text" th:field="*{dough}">
+    <select th:field="*{dough}">
         <option th:value="normal">Normal Crust</option>
         <option th:value="thin">Thin Crust</option>
         <option th:value="cheesy">Cheesy Crust</option>
+    </select>
+    <select name="topping1">
+        <option value="true">yes</option>
+        <option value="false">no</option>
     </select>
     <input class="btn btn-danger" type="submit" value="Order a pizza">
 </form>
