@@ -12,7 +12,13 @@ public class Pizza {
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String size;
+    private String size;   // s m l
+
+    private String sauce;  // none, normal, extra
+
+    private String cheese; // none, normal, extra
+
+    private String dough; // thin, normal, cheesy
 
     public Pizza() {
     }
@@ -36,5 +42,29 @@ public class Pizza {
     }
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public String getSauce() {
+        return sauce;
+    }
+
+    public void setSauce(String sauce) {
+        this.sauce = sauce;
+    }
+
+    public String getCheese() {
+        return cheese;
+    }
+
+    public void setCheese(String cheese) {
+        this.cheese = cheese;
+    }
+
+    public String getDough() {
+        return dough;
+    }
+
+    public void setDough(String dough) {
+        this.dough = dough;
     }
 }

@@ -21,6 +21,21 @@
         <option th:value="m">Medium</option>
         <option th:value="l">Large</option>
     </select>
+    <select type="text" th:field="*{sauce}">
+        <option th:value="normal">Normal Sauce</option>
+        <option th:value="extra">Extra Sauce</option>
+        <option th:value="none">No Sauce</option>
+    </select>
+    <select type="text" th:field="*{cheese}">
+        <option th:value="normal">Normal Cheese</option>
+        <option th:value="extra">Extra Cheese</option>
+        <option th:value="none">No Cheese</option>
+    </select>
+    <select type="text" th:field="*{dough}">
+        <option th:value="normal">Normal Crust</option>
+        <option th:value="thin">Thin Crust</option>
+        <option th:value="cheesy">Cheesy Crust</option>
+    </select>
     <input class="btn btn-danger" type="submit" value="Order a pizza">
 </form>
 </div>
