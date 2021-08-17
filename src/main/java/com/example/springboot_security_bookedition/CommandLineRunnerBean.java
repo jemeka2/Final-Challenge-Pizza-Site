@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
 @Component
 public class CommandLineRunnerBean implements CommandLineRunner {
 
@@ -38,6 +40,10 @@ public class CommandLineRunnerBean implements CommandLineRunner {
 
         Topping pepperoni = new Topping("pepperoni", 0.5, true);
         toppingRepo.save(pepperoni);
+        Topping onions = new Topping("onions", 0.5, false);
+        toppingRepo.save(onions);
+        Topping peppers = new Topping("pepper", 0.5, true);
+        toppingRepo.save(peppers);
 
     }
 
