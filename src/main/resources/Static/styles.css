@@ -1,9 +1,16 @@
-.navbg {
-    background:url("https://res.cloudinary.com/nk4363/image/upload/v1629142762/08b89f8050a52a16fa83206c36775051_jtkkaj.jpg") repeat-x scroll 0 0;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    background-image: url("https://images.pexels.com/photos/129733/pexels-photo-129733.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
 }
+
+/*.navbg {
+    background:url("https://res.cloudinary.com/nk4363/image/upload/v1629142762/08b89f8050a52a16fa83206c36775051_jtkkaj.jpg") repeat-x scroll 0 0;
+}*/
+
 img.aboutUs {
-    height: 70%;
-    width: 70%;
+    height: 100%;
+    width:100%;
 }
 img.carousel{ height: 100%; width: 100%}
 .special{font-family: "Sofia", sans-serif;}
@@ -80,6 +87,102 @@ img.carousel{ height: 100%; width: 100%}
     border-radius: 50%;
     background: white;
 }
+/*Style footer*/
+body{
+    line-height: 1.5;
+    font-family: 'Poppins', sans-serif;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.footer-container{
+    max-width: 500px;
+    margin:auto;
+}
+.footer-row{
+    display: flex;
+    flex-wrap:wrap;
+}
+ul{
+    list-style: none;
+}
+.footer{
+    background-color: #42382f;
+    padding: 70px 0;
+}
+.footer-col{
+    width: 25%;
+    padding: 0 15px;
+}
+.footer-col h4{
+    font-size: 18px;
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 35px;
+    font-weight: 500;
+    position: relative;
+}
+.footer-col h4::before{
+    content: '';
+    position: absolute;
+    left:0;
+    bottom: -10px;
+    background-color: #e91e63;
+    height: 2px;
+    box-sizing: border-box;
+    width: 50px;
+}
+.footer-col ul li:not(:last-child){
+    margin-bottom: 10px;
+}
+.footer-col ul li a{
+    font-size: 16px;
+    text-transform: capitalize;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300;
+    color: #bbbbbb;
+    display: block;
+    transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+    color: #ffffff;
+    padding-left: 8px;
+}
+.footer-col .social-links a{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color: rgba(255,255,255,0.2);
+    margin:0 10px 10px 0;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    color: #ffffff;
+    transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+    color: #24262b;
+    background-color: #ffffff;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+    .footer-col{
+        width: 20%;
+        margin-bottom: 30px;
+    }
+}
+@media(max-width: 574px){
+    .footer-col{
+        width: 100%;
+    }
+}
+
+
+
 
 .checkBox {
     display: block;
