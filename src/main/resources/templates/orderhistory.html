@@ -15,6 +15,7 @@
     <thead>
     <tr>
         <th scope="col">Order#</th>
+        <th scope="col">Timestamp</th>
         <th scope="col">User</th>
         <th scope="col">Size</th>
         <th scope="col">Dough</th>
@@ -27,12 +28,13 @@
     <tbody>
     <tr th:each="pizza:${pizzas}">
         <td th:text="${pizza.id}"></td>
+        <td th:inline="text">[[${pizza.localDate}]] [[${pizza.localTime}]]</td>
         <td th:text="${pizza.user.getUsername()}"></td>
         <td th:text="${pizza.size}"></td>
         <td th:text="${pizza.dough}"></td>
         <td th:text="${pizza.sauce}"></td>
         <td th:text="${pizza.cheese}"></td>
-        <td><div th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]], </div></td>
+        <td><div th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]]</div></td>
 
 
 
