@@ -93,6 +93,14 @@ public class Controller {
         return "orderhistory";
     }
 
+    @RequestMapping("/userhistory/{id}")
+    public String teamDetails(@PathVariable("id") long id, Model model){
+        model.addAttribute("userpizzas", pizzaRepository.findAllByUserId(id));
+        model.addAttribute("toppings", toppingRepo.findAll());
+        return "userhistory";
+    }
+
+
     @RequestMapping("/customerlist")
     public String customerList(Model model){
         model.addAttribute("users", userRepo.findAll());
