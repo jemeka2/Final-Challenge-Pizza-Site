@@ -17,6 +17,7 @@ img.carousel{ height: 100%; width: 100%}
     background: #ffc107;
 }
 
+/*Custom RadioButtons*/
 .radioButton {
     display: block;
     position: relative;
@@ -38,7 +39,7 @@ img.carousel{ height: 100%; width: 100%}
 }
 
 /* Create a custom radio button */
-.checkmark {
+.circle {
     position: absolute;
     top: 0;
     left: 0;
@@ -54,28 +55,104 @@ img.carousel{ height: 100%; width: 100%}
 }
 
 /* When the radio button is checked, add a blue background */
-.radioButton input:checked ~ .checkmark {
+.radioButton input:checked ~ .circle {
     background-color: #dc3545;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
-.checkmark:after {
+.circle:after {
     content: "";
     position: absolute;
     display: none;
 }
 
 /* Show the indicator (dot/circle) when checked */
-.radioButton input:checked ~ .checkmark:after {
+.radioButton input:checked ~ .circle:after {
     display: block;
 }
 
 /* Style the indicator (dot/circle) */
-.radioButton .checkmark:after {
+.radioButton .circle:after {
     top: 9px;
     left: 9px;
     width: 8px;
     height: 8px;
     border-radius: 50%;
     background: white;
+}
+
+.checkBox {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/*Customs Checkboxes*/
+/* Hide the browser's default checkbox */
+.checkBox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.checkBox:hover input ~ .checkmark {
+    background-color: grey;
+}
+
+/* When the checkbox is checked, add a blue background */
+.checkBox input:checked ~ .checkmark {
+    background-color: #dc3545;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.checkBox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkBox .checkmark:after {
+    left: 7px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+#cheesePrice, #saucePrice, #doughPrice, #orderId{
+    display:inline;
+}
+#receiptCard{
+    border: grey 2px solid;
+    margin: auto;
 }
