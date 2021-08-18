@@ -92,9 +92,9 @@ public class Controller {
         return "orderhistory";
     }
 
-    @RequestMapping("/userhistory/{id}")
-    public String teamDetails(@PathVariable("id") long id, Model model){
-        model.addAttribute("userpizzas", pizzaRepository.findAllByUserId(id));
+    @RequestMapping("/userhistory/{username}")
+    public String teamDetails(@PathVariable("username") String username, Model model){
+        model.addAttribute("userpizzas", pizzaRepository.findAllByUserUsername(username));
         model.addAttribute("toppings", toppingRepo.findAll());
         return "userhistory";
     }
