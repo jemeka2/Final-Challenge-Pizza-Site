@@ -12,6 +12,8 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Map;
@@ -88,6 +90,7 @@ public class Controller {
         pizzaRepository.save(pizza);
         model.addAttribute("pizza", pizza);
         model.addAttribute("toppings", toppingRepo.findAll());
+
         return "createpizza";
     }
 
@@ -106,10 +109,19 @@ public class Controller {
             toppings.add(pickedTopping);
             orderToppingRepository.save(pickedTopping);
         }
+        pizza.setLocalDate(LocalDate.now());
+        pizza.setLocalTime(LocalTime.now());
         pizza.setToppings(toppings);
         pizza.setPrice();
         pizzaRepository.save(pizza);
-        return "redirect:/receipt";
+
+        return "receipt";
+    }
+
+    @RequestMapping("/receipt")
+    public String receipt( Model model){
+        model.addAttribute("pizza", new Pizza());
+        return "receipt";
     }
 
     @GetMapping("/createTopping")
@@ -124,11 +136,7 @@ public class Controller {
         return "redirect:/createpizza";
     }
 
-    @RequestMapping("/receipt")
-    public String receipt(Model model){
-        model.addAttribute("pizzas", pizzaRepository.findAll());
-        return "receipt";
-    }
+
 
     @RequestMapping("/about")
     public String aboutUs(){

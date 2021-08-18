@@ -3,7 +3,10 @@ package com.example.springboot_security_bookedition;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Set;
+import java.util.Date;
 
 @Entity
 public class Pizza {
@@ -26,6 +29,10 @@ public class Pizza {
 
     @OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderTopping> toppings;
+
+    private LocalDate localDate;
+
+    private LocalTime localTime;
 
     private double price;
 
@@ -118,5 +125,21 @@ public class Pizza {
             subtotal += topping.getPrice();
         }
         this.price = subtotal;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
+
+    public LocalTime getLocalTime() {
+        return localTime;
+    }
+
+    public void setLocalTime(LocalTime localTime) {
+        this.localTime = localTime;
     }
 }
