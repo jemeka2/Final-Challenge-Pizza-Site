@@ -6,8 +6,23 @@
     <link th:href="@{/styles.css}" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+
+        .modal-content{
+            width: 50%;
+        }
+
+        /* Center the avatar image inside this container */
+        .imgcontainer {
+            text-align: center;
+            margin: auto;
+            width:800px;
+        }
+    </style>
 </head>
 <body>
+
 <div th:replace="fragments :: navbar"></div>
 <h1> Login Page</h1>
 <div th:if="${param.error}">Invalid username or password</div>
@@ -18,16 +33,66 @@
     <div><label>Username: <input type="text" name="username"/></label></div>
     <div><label>Password: <input type="password" name="password"/></label></div>
     <div class="mt-3">
-        <input type="submit" value="sign in"/>
+        <button class="btn-sm btn-warning" type="submit" >Sign In</button>
     </div>
 </form>
-<form th:action="@{/register}">
-    <button class="btn-sm btn-warning">Create an Account</button>
-</form>
+
+<!-- Button to open the modal login form -->
+<button onclick="document.getElementById('id01').style.display='block'" class="btn-sm btn-warning">Create An Account</button>
+
+<!-- The Modal -->
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'"
+        class="close" title="Close Modal">&times;</span>
+
+    <!-- Modal Content -->
+    <form class="modal-content animate" id="modalForm" autocomplete="off" th:action="@{/processregister}" th:object="${user}" method="post">
+        <div class="imgcontainer">
+            <img src="https://res.cloudinary.com/jabiremeka/image/upload/v1629314938/user_zzu2h8.png" alt="Avatar" class="avatar" width="200px">
+        </div>
+
+        <div class="container">
+
+
+            <label for="firstName"><b>First Name</b></label>
+            <input type="text" id="firstName" placeholder="First Name" th:field="*{firstName}" required>
+
+            <label for="lastName"><b>Last Name</b></label>
+            <input type="text" id="lastName" placeholder="Last Name" th:field="*{lastName}" required>
+
+            <label for="email"><b>Email</b></label>
+            <input type="text" id="email" placeholder="Email" th:field="*{email}" required>
+
+            <label for="username"><b>Username</b></label>
+            <input type="text" id="username" placeholder="Username" th:field="*{username}" required>
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" id="password" placeholder="Password" th:field="*{password}">
+
+            <button class="modalBtn" type="submit">Register</button>
+        </div>
+
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn modalBtn">Cancel</button>
+        </div>
+    </form>
+</div>
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script>
+    // Get the modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>

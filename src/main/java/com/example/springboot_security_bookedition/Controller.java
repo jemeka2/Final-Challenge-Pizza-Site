@@ -68,7 +68,7 @@ public class Controller {
             Role role = new Role(user.getUsername(), "ROLE_USER");
             roleRepo.save(role);
         }
-        return "index";
+        return "redirect:/login";
     }
 
     @RequestMapping("/home")
@@ -83,10 +83,9 @@ public class Controller {
 
         double fullSales = 0;
         for( Pizza p: pizzaRepository.findAll()){
-
             fullSales += p.getPrice();
-
         }
+
         Pizza pizza = new Pizza();
         model.addAttribute("pizza", pizza);
         pizza.setAllPizzaSales(fullSales);
@@ -169,7 +168,10 @@ public class Controller {
     }
 
     @RequestMapping("/login")
-    public String login(){return "login";}
+    public String login(Model model){
+        model.addAttribute("user", new User());
+        return "login";
+    }
 
     @RequestMapping("/admin")
     public String admin(){return "admin";}
