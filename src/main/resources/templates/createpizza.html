@@ -74,6 +74,7 @@
                                                 <input type="checkbox" class="checkmark" name="toppingList" th:value="${topping.id}">
                                                 <span class="checkmark"></span>
                                             </label>
+                                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/deleteTopping/{id}(id=${topping.id})}">Delete</a>
                                         </div>
                                     </div>
                                 </div>

@@ -51,23 +51,19 @@ public class Controller {
     @GetMapping("/register")
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
-        return "register";
+        return "redirect:/login";
     }
     @PostMapping("/processregister")
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
-        if(result.hasErrors()){
-            user.clearPassword();
-            model.addAttribute("user", user);
-            return "register";
-        }else{
-            model.addAttribute("user", user);
-            model.addAttribute("message", "New user account created");
-            user.setEnabled(true);
-            userRepo.save(user);
 
-            Role role = new Role(user.getUsername(), "ROLE_USER");
-            roleRepo.save(role);
-        }
+        model.addAttribute("user", user);
+        model.addAttribute("message", "New user account created");
+        user.setEnabled(true);
+        userRepo.save(user);
+
+        Role role = new Role(user.getUsername(), "ROLE_USER");
+        roleRepo.save(role);
+
         return "redirect:/login";
     }
 
@@ -152,6 +148,12 @@ public class Controller {
     public String createTopping(Model model){
         model.addAttribute("topping", new Topping());
         return "createtopping";
+    }
+
+    @RequestMapping("/deleteTopping/{id}")
+    public String deleteTopping(@PathVariable("id") long id){
+        toppingRepo.deleteById(id);
+        return "redirect:/createpizza";
     }
 
     @PostMapping("/processTopping")
