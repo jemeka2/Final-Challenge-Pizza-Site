@@ -154,5 +154,11 @@ img.carousel{ height: 100%; width: 100%}
 }
 #receiptCard{
     border: grey 2px solid;
-    margin: auto;
+}
+#orderDateTime{
+    display:inline;
+}
+#orderTime{
+    display:inline;
+    padding-left: 45%;
 }
