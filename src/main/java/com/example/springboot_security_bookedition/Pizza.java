@@ -36,6 +36,8 @@ public class Pizza {
 
     private double price;
 
+    private double allPizzaSales;
+
 
     public Pizza() {
 
@@ -141,5 +143,13 @@ public class Pizza {
 
     public void setLocalTime(LocalTime localTime) {
         this.localTime = localTime;
+    }
+
+    public double getAllPizzaSales() {
+        return allPizzaSales;
+    }
+
+    public void setAllPizzaSales(double allPizzaSales) {
+        this.allPizzaSales = allPizzaSales;
     }
 }

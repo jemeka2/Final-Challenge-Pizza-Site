@@ -4,9 +4,9 @@ body {
     background-image: url("https://images.pexels.com/photos/129733/pexels-photo-129733.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500");
 }
 
-/*.navbg {
+.navbg {
     background:url("https://res.cloudinary.com/nk4363/image/upload/v1629142762/08b89f8050a52a16fa83206c36775051_jtkkaj.jpg") repeat-x scroll 0 0;
-}*/
+}
 
 img.aboutUs {
     height: 100%;
@@ -264,4 +264,9 @@ ul{
 #orderTime{
     display:inline;
     padding-left: 45%;
+}
+
+.table{
+    background: rgba(255,255,255,0.6)
+
 }

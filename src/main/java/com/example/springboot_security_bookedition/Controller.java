@@ -80,6 +80,16 @@ public class Controller {
     public String orderHistory(Model model){
         model.addAttribute("pizzas", pizzaRepository.findAll());
         model.addAttribute("toppings", toppingRepo.findAll());
+
+        double fullSales = 0;
+        for( Pizza p: pizzaRepository.findAll()){
+
+            fullSales += p.getPrice();
+
+        }
+        Pizza pizza = new Pizza();
+        model.addAttribute("pizza", pizza);
+        pizza.setAllPizzaSales(fullSales);
         return "orderhistory";
     }
 
@@ -154,4 +164,5 @@ public class Controller {
     public String logout(){
         return "redirect:/login?logout=true";
     }
+
 }
