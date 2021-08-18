@@ -103,10 +103,9 @@ public class Controller {
     }
 
     @GetMapping("/createpizza")
-    public String createPizza(Model model, Principal principal){
+    public String createPizza(Model model){
         Pizza pizza = new Pizza();
-        pizza.setUser(userRepo.findByUsername(principal.getName()));
-        pizzaRepository.save(pizza);
+
         model.addAttribute("pizza", pizza);
         model.addAttribute("toppings", toppingRepo.findAll());
 
@@ -114,8 +113,12 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList", required = false) String toppingList){
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList", required = false) String toppingList, Principal principal){
         Set<OrderTopping> toppings = new HashSet<>();
+
+        pizza.setUser(userRepo.findByUsername(principal.getName()));
+        pizzaRepository.save(pizza);
+
         if(toppingList != null){
             String[] pickedToppings = toppingList.split(",");
 

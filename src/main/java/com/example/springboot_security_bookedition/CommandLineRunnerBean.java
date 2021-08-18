@@ -40,7 +40,7 @@ public class CommandLineRunnerBean implements CommandLineRunner {
 
         Topping pepperoni = new Topping("pepperoni", 0.5, true);
         toppingRepo.save(pepperoni);
-        Topping onions = new Topping("onions", 0.5, false);
+        Topping onions = new Topping("onions", 0.5, true);
         toppingRepo.save(onions);
         Topping peppers = new Topping("pepper", 0.5, true);
         toppingRepo.save(peppers);
