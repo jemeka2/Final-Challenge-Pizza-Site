@@ -93,6 +93,12 @@ public class Controller {
         return "orderhistory";
     }
 
+    @RequestMapping("/customerlist")
+    public String customerList(Model model){
+        model.addAttribute("users", userRepo.findAll());
+        return "customerlist";
+    }
+
     @GetMapping("/createpizza")
     public String createPizza(Model model, Principal principal){
         Pizza pizza = new Pizza();
