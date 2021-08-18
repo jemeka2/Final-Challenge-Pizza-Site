@@ -34,6 +34,9 @@ public class Controller {
     ToppingRepo toppingRepo;
 
     @Autowired
+    OrderToppingRepository orderToppingRepository;
+
+    @Autowired
     CloudinaryConfig cloudc;
 
     @RequestMapping("/secure")
@@ -82,6 +85,7 @@ public class Controller {
     public String createPizza(Model model, Principal principal){
         Pizza pizza = new Pizza();
         pizza.setUser(userRepo.findByUsername(principal.getName()));
+        pizzaRepository.save(pizza);
         model.addAttribute("pizza", pizza);
         model.addAttribute("toppings", toppingRepo.findAll());
         return "createpizza";
@@ -89,17 +93,20 @@ public class Controller {
 
     @PostMapping("/processpizza")
     public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList") String toppingList){
-        Set<Topping> toppings = new HashSet<>();
+        Set<OrderTopping> toppings = new HashSet<>();
 
         String[] pickedToppings = toppingList.split(",");
 
         for(String s: pickedToppings){
-           toppingRepo.findById(Long.parseLong(s)).get().setPizza(pizza);
-           toppings.add(toppingRepo.findById(Long.parseLong(s)).get());
+            OrderTopping pickedTopping = new OrderTopping();
+            pickedTopping.setTopping(toppingRepo.findById(Long.parseLong(s)).get());
+            pickedTopping.setPizza(pizza);
+            pickedTopping.setName(toppingRepo.findById(Long.parseLong(s)).get().getName());
+            pickedTopping.setPrice(toppingRepo.findById(Long.parseLong(s)).get().getPrice());
+            toppings.add(pickedTopping);
+            orderToppingRepository.save(pickedTopping);
         }
-
         pizza.setToppings(toppings);
-        System.out.println(pizza.getToppings());
         pizza.setPrice();
         pizzaRepository.save(pizza);
         return "redirect:/receipt";

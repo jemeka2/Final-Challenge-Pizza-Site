@@ -25,7 +25,7 @@ public class Pizza {
     private String dough; // thin, normal, cheesy
 
     @OneToMany(mappedBy = "pizza", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Topping> toppings;
+    private Set<OrderTopping> toppings;
 
     private double price;
 
@@ -34,7 +34,7 @@ public class Pizza {
 
     }
 
-    public Pizza(User user, String size, String sauce, String cheese, String dough, Set<Topping> toppings, double price) {
+    public Pizza(User user, String size, String sauce, String cheese, String dough, Set<OrderTopping> toppings, double price) {
         this.user = user;
         this.size = size;
         this.sauce = sauce;
@@ -86,11 +86,11 @@ public class Pizza {
         this.dough = dough;
     }
 
-    public Set<Topping> getToppings() {
+    public Set<OrderTopping> getToppings() {
         return toppings;
     }
 
-    public void setToppings(Set<Topping> toppings) {
+    public void setToppings(Set<OrderTopping> toppings) {
         this.toppings = toppings;
     }
 
@@ -114,7 +114,7 @@ public class Pizza {
         if(this.sauce.equals("extra")){
             subtotal += 1.00;
         }
-        for (Topping topping : this.toppings) {
+        for (OrderTopping topping : this.toppings) {
             subtotal += topping.getPrice();
         }
         this.price = subtotal;
