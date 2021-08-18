@@ -95,19 +95,20 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList") String toppingList){
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList", required = false) String toppingList){
         Set<OrderTopping> toppings = new HashSet<>();
+        if(toppingList != null){
+            String[] pickedToppings = toppingList.split(",");
 
-        String[] pickedToppings = toppingList.split(",");
-
-        for(String s: pickedToppings){
-            OrderTopping pickedTopping = new OrderTopping();
-            pickedTopping.setTopping(toppingRepo.findById(Long.parseLong(s)).get());
-            pickedTopping.setPizza(pizza);
-            pickedTopping.setName(toppingRepo.findById(Long.parseLong(s)).get().getName());
-            pickedTopping.setPrice(toppingRepo.findById(Long.parseLong(s)).get().getPrice());
-            toppings.add(pickedTopping);
-            orderToppingRepository.save(pickedTopping);
+            for(String s: pickedToppings){
+                OrderTopping pickedTopping = new OrderTopping();
+                pickedTopping.setTopping(toppingRepo.findById(Long.parseLong(s)).get());
+                pickedTopping.setPizza(pizza);
+                pickedTopping.setName(toppingRepo.findById(Long.parseLong(s)).get().getName());
+                pickedTopping.setPrice(toppingRepo.findById(Long.parseLong(s)).get().getPrice());
+                toppings.add(pickedTopping);
+                orderToppingRepository.save(pickedTopping);
+            }
         }
         pizza.setLocalDate(LocalDate.now());
         pizza.setLocalTime(LocalTime.now());
