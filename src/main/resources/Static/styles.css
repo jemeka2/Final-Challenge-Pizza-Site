@@ -17,7 +17,6 @@ img.aboutUs {
 }
 
 #loginLink, #logoutLink, #orderLink{
-
     padding-bottom: 4px;
 }
 
@@ -48,7 +47,7 @@ img.carousel{ height: 100%; width: 100%}
     border-bottom: lightgrey 1px solid;
 }
 #pizzaMaker .card-body{
-    background: #ffc107;
+    background: #fd8701;
 }
 
 /*Custom RadioButtons*/
