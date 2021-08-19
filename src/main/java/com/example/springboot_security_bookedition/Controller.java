@@ -1,6 +1,7 @@
 
 package com.example.springboot_security_bookedition;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -107,7 +108,7 @@ public class Controller {
         Pizza pizza = new Pizza();
 
         model.addAttribute("pizza", pizza);
-        model.addAttribute("toppings", toppingRepo.findAll());
+        model.addAttribute("toppings", toppingRepo.findAllByInStockTrue());
 
         return "createpizza";
     }
@@ -155,7 +156,8 @@ public class Controller {
 
     @RequestMapping("/deleteTopping/{id}")
     public String deleteTopping(@PathVariable("id") long id){
-        toppingRepo.deleteById(id);
+        toppingRepo.findById(id).get().setInStock(false);
+        toppingRepo.save(toppingRepo.findById(id).get());
         return "redirect:/createpizza";
     }
 
