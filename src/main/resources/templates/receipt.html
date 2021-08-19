@@ -14,7 +14,7 @@
     <div th:replace="fragments :: navbar"></div>
 
     <div th:object="${pizza}">
-        <div class="card mx-auto mt-2" style="width: 20%;">
+        <div class="card mx-auto mt-2" style="width: 25%;">
             <div class="card-body" id="receiptCard">
                 <h5 class="card-title" th:inline="text">Order Name: [[${pizza.user.firstName}]] [[${pizza.user.lastName}]]</h5>
                 <h6 class="card-subtitle mb-2 text-muted" id="orderDateTime" th:inline="text">[[${pizza.localDate}]] <h6 class="card-subtitle mb-2 text-muted" id="orderTime">[[${pizza.localTime}]]</h6></h6>
@@ -23,14 +23,22 @@
                     <div class="row">
                         <div class="col">
                             <h6>Pizza Options</h6>
-                            <p th:if="${pizza.size} == s">Size: Small</p>
-                            <p th:if="${pizza.size} == m">Size: Medium</p>
-                            <p th:if="${pizza.size} == l">Size: Large</p>
-                            <p th:inline="text" id="saucePrice"> Sauce: [[${pizza.sauce}]] <br><p  th:if="${pizza.sauce} == extra">Added: $1.00</p></p>
+                            <p th:if="${pizza.size} == s">Size: Small <br> No Additional Cost</p>
+                            <p th:if="${pizza.size} == m">Size: Medium<br> Added: $2.00</p>
+                            <p th:if="${pizza.size} == l">Size: Large<br> Added: $4.00</p>
+                            <p th:inline="text" id="saucePrice"> Sauce: [[${pizza.sauce}]] <br>
+                            <p  th:if="${pizza.sauce} == extra">Added: $1.00</p>
+                            <p th:unless="${pizza.sauce} == extra">No Additional Cost</p>
+                            </p>
                             <br>
-                            <p th:inline="text" id="doughPrice"> Dough: [[${pizza.dough}]] <br><p  th:if="${pizza.dough} == cheesy">Added: $1.00</p></p>
+                            <p th:inline="text" id="doughPrice"> Dough: [[${pizza.dough}]] <br>
+                            <p th:if="${pizza.dough} == cheesy">Added: $1.00</p>
+                            <p th:unless="${pizza.dough} == cheesy">No Additional Cost</p></p>
                             <br>
-                            <p th:inline="text" id="cheesePrice" > Cheese: [[${pizza.cheese}]] <br><p  th:if="${pizza.cheese} == extra">Added: $1.00</p></p>
+                            <p th:inline="text" id="cheesePrice" > Cheese: [[${pizza.cheese}]] <br>
+                            <p th:if="${pizza.cheese} == extra">Added: $1.00</p>
+                            <p th:unless="${pizza.cheese} == extra "> No Additional Cost>
+                            </p>
                         </div>
                         <div class="col">
                             <h6>Toppings</h6>

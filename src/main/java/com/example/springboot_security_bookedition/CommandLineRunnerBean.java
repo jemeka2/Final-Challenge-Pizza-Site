@@ -38,12 +38,16 @@ public class CommandLineRunnerBean implements CommandLineRunner {
         userRepo.save(temp);
         roleRepo.save(tempRole3);
 
-        Topping pepperoni = new Topping("pepperoni", 0.5, true);
+        Topping pepperoni = new Topping("Pepperoni", 0.5, true);
         toppingRepo.save(pepperoni);
-        Topping onions = new Topping("onions", 0.5, true);
+        Topping onions = new Topping("Olives", 0.5, true);
         toppingRepo.save(onions);
-        Topping peppers = new Topping("pepper", 0.5, true);
+        Topping peppers = new Topping("Green Pepper", 0.5, true);
         toppingRepo.save(peppers);
+        Topping bacon = new Topping("Bacon", 0.5, true);
+        toppingRepo.save(bacon);
+        Topping tomatoes = new Topping("Tomatoes", 0.5, true);
+        toppingRepo.save(tomatoes);
 
     }
 

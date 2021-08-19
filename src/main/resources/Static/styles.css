@@ -418,3 +418,48 @@ span.psw {
         width: 100%;
     }
 }
+
+
+/*Adjusting the topping overlays*/
+#reactiveImg {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 25px;
+    height: 100%;
+    width: 100%;
+    display:none;
+}
+
+.overlayImg {
+    color: white;
+    font-size: 100px;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    width: 400px;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+#removeTopping, #orderBtn{
+    position: absolute;
+}
+#orderBtn{
+    bottom:20px;
+}
+
+.selectors{
+    position:absolute;
+}

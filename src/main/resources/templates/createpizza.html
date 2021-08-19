@@ -15,7 +15,24 @@
 
     <div class="m-3">
         <div class="card" id="pizzaMaker" style="width: 35%;">
-            <img src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142349/istockphoto-1168754685-170667a_nuknvu.jpg" class="card-img-top" alt="img of pizza">
+            <div class="container-fluid" id="reactiveImg">
+                <img src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142349/istockphoto-1168754685-170667a_nuknvu.jpg" class="card-img-top" alt="img of pizza">
+            </div>
+            <div class="overlay" id="pepperoniOverlay">
+                <img  class="overlayImg" src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142571/pepperoni_pwyewy.png">
+            </div>
+            <div class="overlay" id="pepperOverlay">
+                <img  class="overlayImg" src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142575/green-peppers_ub4qps.png">
+            </div>
+            <div class="overlay" id="tomatoOverlay">
+                <img  class="overlayImg" src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142581/tomatoes_mjdecj.png">
+            </div>
+            <div class="overlay" id="oliveOverlay">
+                <img  class="overlayImg" src="https://res.cloudinary.com/jabiremeka/image/upload/v1629397261/black-olives_p2bdgf.png">
+            </div>
+            <div class="overlay" id="baconOverlay">
+                <img  class="overlayImg" src="https://res.cloudinary.com/jabiremeka/image/upload/v1629142568/bacon_bh28a2.png">
+            </div>
             <div class="card-body">
                 <form th:action="@{/processpizza}" th:object="${pizza}" method="post">
                     <input type="hidden" th:field="*{id}">
@@ -45,24 +62,25 @@
 
                             <div class="col">
                                 <h5>Pizza Options</h5>
-                                <select th:field="*{sauce}">
+                                <select th:field="*{sauce}" class="selectors">
                                     <option th:value="normal">Normal Sauce</option>
                                     <option th:value="extra">Extra Sauce</option>
                                     <option th:value="none">No Sauce</option>
                                 </select>
                                 <br>
-                                <select th:field="*{cheese}">
+                                <select th:field="*{cheese}" class="selectors">
                                     <option th:value="normal">Normal Cheese</option>
                                     <option th:value="extra">Extra Cheese</option>
                                     <option th:value="none">No Cheese</option>
                                 </select>
                                 <br>
-                                <select th:field="*{dough}">
+                                <select th:field="*{dough}" class="selectors">
                                     <option th:value="normal">Normal Crust</option>
                                     <option th:value="thin">Thin Crust</option>
                                     <option th:value="cheesy">Cheesy Crust</option>
                                 </select>
                                 <br><br>
+
                                 <h5>Toppings</h5>
 
                                 <!--Toppings-->
@@ -71,31 +89,27 @@
                                         <div class="col" th:each="topping: ${toppings}">
                                             <br>
                                             <label th:inline="text" class="checkBox">[[${topping.name}]]
-                                                <input type="checkbox" class="checkmark" name="toppingList" th:value="${topping.id}">
+                                                <input type="checkbox" th:id="${topping.name}" class="checkmark" name="toppingList" th:value="${topping.id}" onclick="pizzaToppings()">
                                                 <span class="checkmark"></span>
                                             </label>
-                                            <a sec:authorize="hasRole('ADMIN')" th:href="@{/deleteTopping/{id}(id=${topping.id})}">Remove</a>
+
+                                            <a sec:authorize="hasRole('ADMIN')" id="removeTopping" th:href="@{/deleteTopping/{id}(id=${topping.id})}">Remove</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <input class="btn btn-danger" type="submit" value="Order a pizza">
+                    <input id="orderBtn" class="btn btn-danger" type="submit" value="Order a pizza">
                 </form>
             </div>
         </div>
     </div>
 
 
-
-
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-<script>
-    document.getElementById("small").setAttribute("checked", "checked");
-</script>
+<script th:src="@{/main.js}"></script>
 </body>
 </html>
