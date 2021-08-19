@@ -4,6 +4,10 @@ package com.example.springboot_security_bookedition;
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.cloudinary.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -15,10 +19,7 @@ import java.lang.reflect.Array;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @org.springframework.stereotype.Controller
 public class Controller {
@@ -55,7 +56,7 @@ public class Controller {
         return "redirect:/login";
     }
     @PostMapping("/processregister")
-    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
+    public String processRegistrationPage(@Valid @ModelAttribute("user") User user, Model model){
 
         model.addAttribute("user", user);
         model.addAttribute("message", "New user account created");
@@ -114,7 +115,8 @@ public class Controller {
     }
 
     @PostMapping("/processpizza")
-    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList", required = false) String toppingList, Principal principal){
+    public String processPizza(@ModelAttribute Pizza pizza, @RequestParam(name = "toppingList", required = false) String toppingList,
+                               Principal principal){
         Set<OrderTopping> toppings = new HashSet<>();
 
         pizza.setUser(userRepo.findByUsername(principal.getName()));
@@ -133,11 +135,34 @@ public class Controller {
                 orderToppingRepository.save(pickedTopping);
             }
         }
+
         pizza.setLocalDate(LocalDate.now());
         pizza.setLocalTime(LocalTime.now());
         pizza.setToppings(toppings);
         pizza.setPrice();
         pizzaRepository.save(pizza);
+
+        String name = userRepo.findByUsername(principal.getName()).getFirstName() + " " + userRepo.findByUsername(principal.getName()).getLastName();
+        String pizzaOrder = pizza.getDough() + " dough " + pizza.getCheese() + " cheese " + pizza.getSauce() + " sauce ";
+        String allToppings = "";
+        String size = "";
+        for(OrderTopping s: pizza.getToppings()){
+            allToppings =  s.getName() + " " + allToppings;
+        }
+
+        if(pizza.getSize().equals("s")){
+            size = "small";
+        }
+        else if(pizza.getSize().equals("m")){
+            size = "medium";
+        }
+        else{
+            size = "large";
+        }
+
+        sendSimpleMessage(userRepo.findByUsername(principal.getName()).getEmail(),"DJN Pizza Order Confirmation",
+                "Hello " + name + ",\nyou recently ordered a " + size + " pizza with\n" + pizzaOrder + "\n"
+                        + allToppings + "\nThank you for eating at DJN Pizza") ;
 
         return "receipt";
     }
@@ -167,8 +192,6 @@ public class Controller {
         return "redirect:/createpizza";
     }
 
-
-
     @RequestMapping("/about")
     public String aboutUs(){
         return "about";
@@ -186,6 +209,38 @@ public class Controller {
     @RequestMapping("/logout")
     public String logout(){
         return "redirect:/login?logout=true";
+    }
+
+
+    @Bean
+    public JavaMailSender getJavaMailSender(){
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("djnpizza@gmail.com");
+        mailSender.setPassword("JavaBootcamp");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
+
+    @Autowired
+    private JavaMailSender emailSender;
+
+    public void sendSimpleMessage(String to, String subject, String text){
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("djnpizza@gmail.com");
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        emailSender.send(message);
+
     }
 
 }
