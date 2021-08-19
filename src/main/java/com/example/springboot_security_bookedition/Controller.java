@@ -90,6 +90,12 @@ public class Controller {
         return "orderhistory";
     }
 
+    @RequestMapping("/toppingcount")
+    public String toppingCount(Model model){
+
+        return "toppingcount";
+    }
+
     @RequestMapping("/userhistory/{username}")
     public String teamDetails(@PathVariable("username") String username, Model model){
         model.addAttribute("userpizzas", pizzaRepository.findAllByUserUsername(username));
@@ -101,6 +107,12 @@ public class Controller {
     @RequestMapping("/customerlist")
     public String customerList(Model model){
         model.addAttribute("users", userRepo.findAll());
+        return "customerlist";
+    }
+
+    @PostMapping("/searchcustomers")
+    public String searchCustomers(@RequestParam(name = "searchinput") String searchInput, Model model){
+        model.addAttribute("users", userRepo.findAllByUsernameContainsIgnoreCaseOrFirstNameContainsIgnoreCaseOrLastNameContainsIgnoreCaseOrEmailContainsIgnoreCase(searchInput, searchInput, searchInput, searchInput));
         return "customerlist";
     }
 
