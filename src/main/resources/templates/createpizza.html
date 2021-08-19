@@ -94,14 +94,14 @@
                                                 <span class="checkmark"></span>
                                             </label>
 
-                                            <a sec:authorize="hasRole('ADMIN')" id="removeTopping" th:href="@{/deleteTopping/{id}(id=${topping.id})}">Remove</a>
+                                            <a sec:authorize="hasRole('ADMIN')" id="removeTopping" th:href="@{/deleteTopping/{id}(id=${topping.id})}" onclick="return confirm('Are you sure you want to disable this topping?')">Remove</a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <input id="orderBtn" class="btn btn-danger" type="submit" value="Order a pizza">
+                    <input id="orderBtn" class="btn btn-danger" type="submit" value="Order a pizza" onclick="return confirm('Place Order?')">
                 </form>
             </div>
         </div>
