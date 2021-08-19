@@ -44,7 +44,7 @@
 
 
 
-        <td th:text="${pizza.price}"></td>
+        <td th:inline="text">$[[${pizza.price}]]0</td>
 
 
     </tr>
