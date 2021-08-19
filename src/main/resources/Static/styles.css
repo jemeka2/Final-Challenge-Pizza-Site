@@ -15,6 +15,25 @@ img.aboutUs {
     height: 100%;
     width:100%;
 }
+
+#loginLink, #logoutLink, #orderLink{
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+#logoutBtn, #customBtn, #loginBtn{
+    background-color: #ffc107;
+    border: #ffc107;
+    padding: .375rem .75rem;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 img.carousel{ height: 100%; width: 100%}
 .special{font-family: "Sofia", sans-serif;}
 #pizzaMaker{
