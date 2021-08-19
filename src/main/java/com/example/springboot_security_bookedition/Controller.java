@@ -92,7 +92,21 @@ public class Controller {
 
     @RequestMapping("/toppingcount")
     public String toppingCount(Model model){
+        model.addAttribute("count1", orderToppingRepository.countByName("pepperoni"));
+        model.addAttribute("count2", orderToppingRepository.countByName("onions"));
+        model.addAttribute("count3", orderToppingRepository.countByName("pepper"));
 
+        Iterable<Topping> toppings = toppingRepo.findAll();
+        long i = 0;
+        String query = "query";
+        ArrayList<String> keys = new ArrayList<>();
+        for(Topping topping: toppings){
+            i++;
+            model.addAttribute(query+i, orderToppingRepository.countByName(topping.getName()));
+            keys.add(query+i);
+        }
+        model.addAttribute("keys", keys);
+        model.addAttribute("toppings", toppingRepo.findAll());
         return "toppingcount";
     }
 
