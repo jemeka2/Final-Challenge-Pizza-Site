@@ -69,7 +69,11 @@
     <!-- Modal Content -->
     <form class="modal-content animate" id="modalForm" autocomplete="off" th:action="@{/processregister}" th:object="${user}" method="post">
         <div class="imgcontainer">
-            <img src="https://res.cloudinary.com/jabiremeka/image/upload/v1629314938/user_zzu2h8.png" alt="Avatar" class="avatar" width="200px">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+            <img src="https://res.cloudinary.com/jabiremeka/image/upload/v1629314938/user_zzu2h8.png" alt="Avatar" class="img-fluid" width="200px">
+                </div>
+            </div>
         </div>
 
         <div class="container">
