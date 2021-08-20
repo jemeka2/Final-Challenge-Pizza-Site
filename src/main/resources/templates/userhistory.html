@@ -40,7 +40,10 @@
         <td th:text="${pizza.dough}"></td>
         <td th:text="${pizza.sauce}"></td>
         <td th:text="${pizza.cheese}"></td>
-        <td><div th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]]</div></td>
+        <td>
+            <div th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]]</div>
+            <div th:if="${pizza.toppings.size()} == 0">No Toppings</div>
+        </td>
 
 
 
