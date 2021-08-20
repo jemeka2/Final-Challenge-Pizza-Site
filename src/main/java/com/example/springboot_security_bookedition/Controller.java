@@ -178,7 +178,7 @@ public class Controller {
             size = "large";
         }
 
-        sendSimpleMessage(userRepo.findByUsername(principal.getName()).getEmail(),"DJN Pizza Order Confirmation",
+        sendSimpleMessage(userRepo.findByUsername(principal.getName()).getEmail(),"DJN Pizza Order Confirmation; Order ID " + pizza.getId(),
                 "Hello " + name + ",\nyou recently ordered a " + size + " pizza with\n" + pizzaOrder + "\n"
                         + allToppings + "\nThank you for eating at DJN Pizza") ;
 
