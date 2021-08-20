@@ -43,6 +43,7 @@
                         <div class="col">
                             <h6>Toppings</h6>
                             <p th:each="topping: ${pizza.toppings}" th:inline="text">[[${topping.name}]]:  $[[${topping.price}]]0</p>
+                            <p th:if="${pizza.toppings.size()} == 0" th:inline="text">No Toppings </p>
                         </div>
                     </div>
                 </div>
