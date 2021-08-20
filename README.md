@@ -77,7 +77,7 @@ _------------------_
 
 **Test Account Credentials:**
 
-**	**User account: login: bart, pass: bart
+	User account: login: bart, pass: bart
 
 	Admin account: login: super, pass: super
 
